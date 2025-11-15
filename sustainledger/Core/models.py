@@ -6,4 +6,4 @@ class core (models.Model):
     location= models.TextField()
 
     def __str__(self):
-        return f'core {self.id}: {self.name}' #self.name 
+        return f'core {self.id}{self.name}' #self.name 
