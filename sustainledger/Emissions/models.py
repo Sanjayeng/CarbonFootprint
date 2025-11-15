@@ -1,30 +1,22 @@
 from django.db import models
 
 
-class EmissionFactor(models.Model):
-    category = models.CharField(max_length=100)      
-    factor_value = models.FloatField()               
-    unit = models.CharField(max_length=50)           
-
-    def __str__(self):
-        return f"emissionfactor {self.id} {self.category}"
-
-
 class Activity(models.Model):
-    core = models.CharField(max_length=255, null=True, blank=True)
-    category = models.CharField(max_length=100)
-    value = models.FloatField()                     
-    date = models.DateField()                       
+    core = models.CharField(max_length=100, default="Unknown")
 
-    def __str__(self):
-        return f"activity {self.id} {self.category}"
+    category = models.CharField(max_length=100)
+    value = models.DecimalField(max_digits=10, decimal_places=2)
+    date = models.DateField()
+
+
+class EmissionFactor(models.Model):
+    category = models.CharField(max_length=100)
+    factor_value = models.DecimalField(max_digits=10, decimal_places=6)
+    unit = models.CharField(max_length=50)
+
 
 class ConvertedEmission(models.Model):
-    activity = models.CharField(max_length=255)
-    co2e_value = models.FloatField(null=True, blank=True)
-    emission_factor = models.CharField(max_length=255, null=True, blank=True)  
+    activity = models.OneToOneField(Activity, on_delete=models.CASCADE)
+    co2e_value = models.DecimalField(max_digits=12, decimal_places=6, default=0)
+    emission_factor = models.ForeignKey(EmissionFactor, on_delete=models.SET_NULL, null=True, blank=True)
     calculated_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return str(self.co2e_value)
-
