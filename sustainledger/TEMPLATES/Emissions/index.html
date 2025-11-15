@@ -6,27 +6,37 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Activity List</h2>
+ <h1>Activity List</h1>
+
 <a href="{% url 'activity_add' %}">Add Activity</a>
+<br><br>
 
 <table border="1" cellpadding="6">
-  <tr>
-    <th>ID</th>
-    <th>Core</th>
-    <th>Category</th>
-    <th>Value</th>
-    <th>Date</th>
-  </tr>
-  {% for a in activities %}
-  <tr>
-    <td>{{ a.id }}</td>
-    <td>{{ a.core }}</td>
-    <td>{{ a.category }}</td>
-    <td>{{ a.value }}</td>
-    <td>{{ a.date }}</td>
-  </tr>
-  {% endfor %}
-</table>
+    <tr>
+        <th>ID</th>
+        <th>Core</th>
+        <th>Category</th>
+        <th>Value</th>
+        <th>Date</th>
+        <th>CO₂</th>
+    </tr>
 
+    {% for row in rows %}
+    <tr>
+        <td>{{ row.id }}</td>
+        <td>{{ row.core }}</td>
+        <td>{{ row.category }}</td>
+        <td>{{ row.value }}</td>
+        <td>{{ row.date }}</td>
+        <td>
+            {% if row.co2 %}
+                {{ row.co2 }}
+            {% else %}
+                -
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
 </body>
 </html>
