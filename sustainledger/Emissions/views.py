@@ -1,5 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+
+from .models import Activity
 
 # Create your views here.
-def activitylist(request):
-    return render(request, 'Emissions/activitylist.html')
+def emission_index(request):
+    activities = Activity.objects.all()
+    return render(request, 'Emissions/index.html', {'activities': activities})
+
+def activity_add(request):
+    if request.method == 'POST':
+        core = request.POST.get('core')
+        category = request.POST.get('category')
+        value = request.POST.get('value')
+        date = request.POST.get('date')
+
+        Activity.objects.create(
+            core=core,
+            category=category,
+            value=value,
+            date=date
+        )
+
+        return redirect('emissions_index')
+
+    return render(request, 'emissions/add.html')
+    
