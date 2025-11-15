@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is Core</h1>
+    <form action="{% url 'Core:add_core' %}" method="post">
+    {% csrf_token %}
+    <label for="name">Company Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your Company name">
+    <br><br>
+    <label for="location">Company Location:</label>
+    <input type="text" id="location" name="location" placeholder="Enter your Company location">
+    <br><br>
+    <button onclick="submitName()">Submit</button>
+    <br><br>
+    </form>
+</body>
+</html>
