@@ -6,6 +6,27 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>This is Emissions</h1>
+    <h2>Activity List</h2>
+<a href="{% url 'activity_add' %}">Add Activity</a>
+
+<table border="1" cellpadding="6">
+  <tr>
+    <th>ID</th>
+    <th>Core</th>
+    <th>Category</th>
+    <th>Value</th>
+    <th>Date</th>
+  </tr>
+  {% for a in activities %}
+  <tr>
+    <td>{{ a.id }}</td>
+    <td>{{ a.core }}</td>
+    <td>{{ a.category }}</td>
+    <td>{{ a.value }}</td>
+    <td>{{ a.date }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
 </body>
 </html>
