@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
 </head>
 <body>
-    <h1>This is Core</h1>
-    <label for="name">Company Name:</label>
-    <input type="text" id="name" name="name" placeholder="Enter your Company name">
-    <br><br>
-    <label for="location">Company Location:</label>
-    <input type="text" id="location" name="location" placeholder="Enter your Company location">
-    <br><br>
-    <button onclick="submitName()">Submit</button>
-    <br><br>
-    <a href="{% url 'admin:index' %}">Go to Admin Page</a>
+    <h1>This is core index</h1>
+   
+    <table border ='1px'>
+        <tr>
+            <th>Company Name</th>
+            <th>Company Location</th>
+        </tr>
+        {% for c in core_list %}
+        <tr>
+            <td>{{ c.name }}</td>
+            <td>{{ c.location }}</td>
+        </tr>
+        {% endfor %}
+        <a href="{% url 'Core:add_core' %}">Add New Core</a>
+    </table>
 </body>
 </html>
