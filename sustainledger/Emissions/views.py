@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
-from .models import Activity  
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Activity   # keep as you have
+
 
 
 def emission_index(request):
@@ -47,3 +48,22 @@ def activity_add(request):
         return redirect("emission_index")
 
     return render(request, "emissions/add.html")
+
+def activity_edit(request, pk):
+    activity = get_object_or_404(Activity, pk=pk)
+
+    if request.method == "POST":
+        activity.core = request.POST.get("core")
+        activity.category = request.POST.get("category")
+        activity.value = request.POST.get("value")
+        activity.date = request.POST.get("date")
+        activity.save()
+        return redirect("emission_index")
+
+    return render(request, "emissions/edit.html", {"activity": activity})
+
+
+def activity_delete(request, pk):
+    activity = get_object_or_404(Activity, pk=pk)
+    activity.delete()
+    return redirect("emission_index")
