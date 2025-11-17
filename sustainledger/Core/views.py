@@ -1,24 +1,43 @@
-from urllib import request
-from django.shortcuts import redirect, render
-from .models import core
-# Create your views here.
+from django.shortcuts import render, redirect
+from .models import Core, Facility
 
-  
+# CORE ADD
+def core_add(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        location = request.POST.get("location")
+        Core.objects.create(name=name, location=location)
+        return redirect('Core:core_list')
 
-def index(request):
-    core_objects = core.objects.all()
-    data = {'core_list': core_objects}
-    return render(request, 'Core/index.html', data)
+    return render(request, "Core/core_add.html")
 
-def add_core(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        location = request.POST.get('location')
-        new_core = core(name=name, location=location)
-        new_core.save()
 
-        return redirect('Core:index')
+# CORE LIST
+def core_list(request):
+    cores = Core.objects.all()
+    return render(request, "Core/core_list.html", {"cores": cores})
 
-    return render(request, 'Core/add.html')
-    
-   
+
+# FACILITY ADD
+def facility_add(request):
+    cores = Core.objects.all()
+
+    if request.method == "POST":
+        core_id = request.POST.get("core")
+        name = request.POST.get("name")
+        location = request.POST.get("location")
+
+        Facility.objects.create(
+            core_id=core_id,
+            name=name,
+            location=location
+        )
+        return redirect('Core:facility_list')
+
+    return render(request, "Core/facility_add.html", {"cores": cores})
+
+
+# FACILITY LIST
+def facility_list(request):
+    facilities = Facility.objects.all()
+    return render(request, "Core/facility_list.html", {"facilities": facilities})
