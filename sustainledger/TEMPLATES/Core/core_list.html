@@ -3,23 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Core List</title>
 </head>
 <body>
     <h1>This is core index</h1>
    
-    <table border ='1px'>
+    <table border="1px">
         <tr>
             <th>Company Name</th>
             <th>Company Location</th>
         </tr>
-        {% for c in core_list %}
+
+        {% for c in cores %}
         <tr>
             <td>{{ c.name }}</td>
             <td>{{ c.location }}</td>
         </tr>
         {% endfor %}
-        <a href="{% url 'Core:add_core' %}">Add New Core</a>
     </table>
+
+    <br>
+
+    <a href="{% url 'Core:core_add' %}">Add New Core</a>
+     <a href="{% url 'Core:facility_add' %}">
+    <button type="button">Go to Facility Page</button>
+    </a>
+
+
 </body>
 </html>

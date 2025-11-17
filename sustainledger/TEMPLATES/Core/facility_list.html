@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Facilities</h1>
+
+<a href="/core/facility/add/">Add Facility</a>
+<br><br>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Core</th>
+        <th>Facility</th>
+        <th>Location</th>
+    </tr>
+
+    {% for f in facilities %}
+    <tr>
+        <td>{{ f.core.name }}</td>
+        <td>{{ f.name }}</td>
+        <td>{{ f.location }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import core
+from .models import Core, Facility
 
-# Register your models here.
-admin.site.register(core)
+admin.site.register(Core)
+admin.site.register(Facility)
