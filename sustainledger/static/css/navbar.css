@@ -1,0 +1,140 @@
+/* 🌗 Dark / Light theme */
+body.dark {
+    background: #0f172a;
+    color: white;
+}
+
+body.light {
+    background: #ffffff;
+    color: #0f172a;
+}
+
+/* 🌟 NAVBAR DESIGN */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 30px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, #34d399, #14b8a6);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    font-weight: 800;
+    color: #042f2e;
+}
+
+.nav-brand h2 {
+    margin: 0;
+}
+
+/* 🌈 NAV LINKS */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Buttons */
+.nav-btn {
+    padding: 10px 16px;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 8px;
+    transition: 0.25s;
+    font-weight: 500;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.logout {
+    background: #ef4444;
+    color: white !important;
+}
+
+.logout:hover {
+    background: #dc2626;
+}
+
+/* 🌙 Theme toggle */
+.theme-toggle {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #3b82f6;
+    color: white;
+    font-size: 18px;
+}
+
+/* 📱 MOBILE NAVIGATION */
+#nav-toggle {
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+    .nav-links {
+        position: absolute;
+        top: 75px;
+        right: 0;
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(14px);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px;
+        border-radius: 12px;
+        width: 220px;
+        transform: translateX(120%);
+        transition: 0.3s;
+    }
+
+    #nav-toggle:checked ~ .nav-links {
+        transform: translateX(0);
+    }
+
+    .hamburger {
+        display: block;
+    }
+}
+
+/* Hero Section */
+.hero {
+    padding: 100px 30px;
+    text-align: center;
+}
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+.hero p {
+    font-size: 18px;
+    opacity: 0.8;
+}

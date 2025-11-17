@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+<title>Dashboard</title>
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<script src="{% static 'js/theme.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-wrapper">
+
+    <nav class="navbar">
+        <h2>Welcome, {{ request.user.username }} 👋</h2>
+
+        <div class="nav-actions">
+            <a href="{% url 'accounts:profile' %}" class="btn">Profile</a>
+            <a href="{% url 'accounts:logout' %}" class="btn logout">Logout</a>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        </div>
+    </nav>
+
+    <div class="dashboard-box">
+        <h1>Your Dashboard</h1>
+        <p>Here you can access your system features, stats, and more.</p>
+    </div>
+
+</div>
+
+{% endblock %}
