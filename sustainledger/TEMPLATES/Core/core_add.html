@@ -6,8 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>This is Core</h1>
-    <form action="{% url 'Core:add_core' %}" method="post">
+    <h1>This is Company</h1>
+    <form action="{% url 'Core:core_add' %}" method="post">
     {% csrf_token %}
     <label for="name">Company Name:</label>
     <input type="text" id="name" name="name" placeholder="Enter your Company name">
@@ -15,8 +15,14 @@
     <label for="location">Company Location:</label>
     <input type="text" id="location" name="location" placeholder="Enter your Company location">
     <br><br>
-    <button onclick="submitName()">Submit</button>
+    <button onclick="submitName()">Save</button>
     <br><br>
+    <a href="{% url 'Core:facility_add' %}">
+    <button type="button">Go to Facility Page</button>
+    </a>
+
     </form>
+
+    
 </body>
 </html>
