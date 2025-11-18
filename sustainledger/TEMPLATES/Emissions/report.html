@@ -1,0 +1,41 @@
+
+    <!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Emission Report</title>
+  <style>
+    body { font-family: DejaVu Sans, Arial, sans-serif; font-size: 12px; }
+    h1 { text-align: center; font-size: 18px; margin-bottom: 10px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 5px; }
+    th, td { border: 1px solid #444; padding: 5px; text-align: center; }
+    th { background: #eee; }
+  </style>
+</head>
+<body>
+  <h1>SustainLedger - Emission Activities Report</h1>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Core</th>
+      <th>Category</th>
+      <th>Value</th>
+      <th>Date</th>
+      <th>CO₂ (tons)</th>
+    </tr>
+    {% for row in rows %}
+    <tr>
+      <td>{{ row.id }}</td>
+      <td>{{ row.core }}</td>
+      <td>{{ row.category }}</td>
+      <td>{{ row.value }}</td>
+      <td>{{ row.date }}</td>
+      <td>{{ row.co2 }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
+
+</body>
+</html>
