@@ -43,16 +43,26 @@ def emission_index(request):
 
 
 def activity_add(request):
-    if request.method == "POST":
-        Activity.objects.create(
-            core=request.POST.get("core"),
-            category=request.POST.get("category"),
-            value=request.POST.get("value"),
-            date=request.POST.get("date"),
-        )
-        return redirect("emission_index")
+    core_prefill = ""
+    core_id = request.GET.get("core_id")  # coming from core page
 
-    return render(request, "emissions/add.html")
+    if core_id:
+        try:
+            core_prefill = Core.objects.get(id=core_id).company_name
+        except:
+            core_prefill = ""
+
+    if request.method == 'POST':
+        Activity.objects.create(
+            core=request.POST.get('core'),
+            category=request.POST.get('category'),
+            value=request.POST.get('value'),
+            date=request.POST.get('date'),
+        )
+        return redirect('emission_index')
+
+    return render(request, 'emissions/add.html', {"core_prefill": core_prefill})
+
 
 def activity_edit(request, pk):
     activity = get_object_or_404(Activity, pk=pk)
