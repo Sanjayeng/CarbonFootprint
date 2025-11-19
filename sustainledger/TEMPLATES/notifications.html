@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Notifications</title>
+<link rel="stylesheet" href="{% static 'css/app.css' %}">
+<a href="{% url 'accounts:notifications' %}">
+  Notifications {% if unread_notifications_count %}<span class="badge">{{ unread_notifications_count }}</span>{% endif %}
+</a>
+
+{% endblock %}
+
+{% block content %}
+<div class="app-layout">
+  {% include "_sidebar.html" %}
+  <main class="main-content">
+    <h2>Notifications</h2>
+    <ul class="notifs">
+      {% for n in notifications %}
+        <li class="{% if not n.is_read %}unread{% endif %}">
+          <a href="{{ n.url|default:'#' }}">{{ n.text }}</a>
+          <small>{{ n.created_at|naturaltime }}</small>
+          {% if not n.is_read %}
+            <a href="{% url 'accounts:notif_read' n.pk %}" class="mark-read">Mark read</a>
+          {% endif %}
+        </li>
+      {% empty %}
+        <li>No notifications</li>
+      {% endfor %}
+    </ul>
+  </main>
+</div>
+{% endblock %}

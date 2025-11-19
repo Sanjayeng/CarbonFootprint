@@ -1,11 +1,44 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SustainLedger</title>
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <script src="{% static 'js/theme.js' %}" defer></script>
 </head>
-<body>
+
+<body class="dark">
+
+<header class="navbar">
+    <div class="nav-brand">
+        <span class="logo">SL</span>
+        <h2>SustainLedger</h2>
+    </div>
+
+    <input type="checkbox" id="nav-toggle">
+    <label for="nav-toggle" class="hamburger">&#9776;</label>
+
+    <nav class="nav-links">
+        <a href="/" class="nav-btn">Home</a>
+        <a href="{% url 'accounts:dashboard' %}" class="nav-btn">Dashboard</a>
+        <a href="{% url 'accounts:profile' %}" class="nav-btn">Profile</a>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'accounts:logout' %}" class="nav-btn logout">Logout</a>
+        {% else %}
+            <a href="{% url 'accounts:login' %}" class="nav-btn">Login</a>
+            <a href="{% url 'accounts:register' %}" class="nav-btn">Register</a>
+        {% endif %}
+
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    </nav>
+</header>
+
+<section class="hero">
     <h1>Welcome to SustainLedger</h1>
+    <p>Your sustainable carbon & analytics platform.</p>
+</section>
+
 </body>
 </html>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Activity</title>
+<link rel="stylesheet" href="{% static 'css/app.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="app-layout">
+  {% include "_sidebar.html" %}
+  <main class="main-content">
+    <h2>Activity Log</h2>
+    <ul class="activity-list">
+      {% for a in logs %}
+        <li>
+          <div class="act-meta">{{ a.created_at|date:"M d, H:i" }}</div>
+          <div class="act-text">{{ a.action }}</div>
+        </li>
+      {% empty %}
+        <li>No activity yet.</li>
+      {% endfor %}
+    </ul>
+  </main>
+</div>
+{% endblock %}

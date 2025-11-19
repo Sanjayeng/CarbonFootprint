@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Admin Dashboard</title>
+<link rel="stylesheet" href="{% static 'css/app.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="app-layout">
+  {% include "_sidebar.html" %}
+  <main class="main-content">
+    <h2>Admin Overview</h2>
+    <div class="admin-cards">
+      <div class="card">Total users: {{ total_users }}</div>
+      <div class="card">Total notifications: {{ total_notifications }}</div>
+      <div class="card">Total activities: {{ total_activities }}</div>
+    </div>
+
+    <h3>Recent users</h3>
+    <ul>
+      {% for u in recent_users %}
+        <li>{{ u.username }} — joined {{ u.date_joined|date:"M d, Y" }}</li>
+      {% endfor %}
+    </ul>
+  </main>
+</div>
+{% endblock %}
