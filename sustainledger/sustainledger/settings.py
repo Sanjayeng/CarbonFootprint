@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from django.contrib.messages import constants as messages
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,7 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Core',
     'Emissions',
+    'accounts',
+
 ]
+
+LOGIN_REDIRECT_URL = 'Core:core_list'
+LOGOUT_REDIRECT_URL = 'accounts:login'
+LOGOUT_REDIRECT_URL = '/'
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
