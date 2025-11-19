@@ -54,7 +54,7 @@
         </small>
       </div>
       <div class="d-flex gap-2">
-        <a href="{% url 'emission_index' %}" class="btn btn-secondary btn-sm">
+       <a href="{% url 'emissions:emission_index' 1 %}" class="btn btn-secondary btn-sm">
           <i class="bi bi-arrow-left"></i> Activities
         </a>
         <button type="button" class="btn btn-danger btn-sm" onclick="downloadGraph()">

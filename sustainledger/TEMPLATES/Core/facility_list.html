@@ -93,21 +93,36 @@
     <a href="{% url 'Core:facility_add' %}" class="btn btn-primary">Add New Facility</a>
     <a href="{% url 'Core:core_list' %}" class="btn btn-secondary">Back to Core Page</a>
 
-    <table class="table table-bordered table-striped mt-3">
-        <thead class="table-dark">
-            <tr>
-                <th>Facility Name</th>
-                <th>Location</th>
-                <th>Core Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for facility in facilities %}
-            <tr>
-                <td>{{ facility.name }}</td>
-                <td>{{ facility.location }}</td>
-                <td>{{ facility.core.name }}</td>
-            </tr>
+    <table class="table table-bordered mt-3">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Facility Name</th>
+            <th>Core</th>
+            <th>Location</th>
+            <th>Add to Emission</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for f in facilities %}
+        <tr>
+            <td>{{ f.id }}</td>
+            <td>{{ f.name }}</td>
+            <td>{{ f.core.name }}</td>
+            <td>{{ f.location }}</td>
+
+            <td>
+    <a href="{% url 'emissions:activity_add' %}?facility_id={{ f.id }}"
+   class="btn btn-success btn-sm">
+   ➕ Add to Emission
+</a>
+
+
+
+            </td>
+        </tr>
+ 
             {% endfor %}
         </tbody>
     </table>

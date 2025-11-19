@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django import core
+from django.shortcuts import get_object_or_404, render, redirect
 from .models import Core, Facility
 from django.contrib.auth.decorators import login_required
-
 
 
 # CORE ADD
@@ -49,3 +49,13 @@ def facility_add(request):
 def facility_list(request):
     facilities = Facility.objects.all()
     return render(request, "Core/facility_list.html", {"facilities": facilities})
+
+
+
+# CORE DELETE
+
+@login_required
+def core_delete(request, id):
+    obj = get_object_or_404(Core, id=id)
+    obj.delete()
+    return redirect("Core:core_list")
