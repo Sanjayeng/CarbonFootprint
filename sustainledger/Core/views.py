@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Core, Facility
+from django.contrib.auth.decorators import login_required
+
+
 
 # CORE ADD
+@login_required
 def core_add(request):
     if request.method == "POST":
         name = request.POST.get("name")
@@ -13,12 +17,15 @@ def core_add(request):
 
 
 # CORE LIST
+@login_required
 def core_list(request):
     cores = Core.objects.all()
     return render(request, "Core/core_list.html", {"cores": cores})
 
 
 # FACILITY ADD
+
+@login_required
 def facility_add(request):
     cores = Core.objects.all()
 
@@ -38,6 +45,7 @@ def facility_add(request):
 
 
 # FACILITY LIST
+@login_required
 def facility_list(request):
     facilities = Facility.objects.all()
     return render(request, "Core/facility_list.html", {"facilities": facilities})
