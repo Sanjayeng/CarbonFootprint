@@ -94,23 +94,33 @@
     <a href="{% url 'Core:facility_add' %}" class="btn btn-secondary">Go to Facility Page</a>
 
     <table class="table table-bordered table-striped mt-3">
-        <thead class="table-dark">
-            <tr>
-                <th>Core Name</th>
-                <th>Location</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for c in cores %}
-            <tr>
-                <td>{{ c.name }}</td>
-                <td>{{ c.location }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 
+    <thead class="table-dark">
+        <tr>
+            <th>Core Name</th>
+            <th>Location</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for c in cores %}
+        <tr>
+            <td>{{ c.name }}</td>
+            <td>{{ c.location }}</td>
+
+            <td>
+               
+                <!-- DELETE button -->
+                <a href="{% url 'Core:core_delete' c.id %}" 
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Are you sure you want to delete this core?');">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
 </div>
-
-</body>
-</html>

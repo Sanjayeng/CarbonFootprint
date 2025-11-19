@@ -48,10 +48,12 @@
       <form method="post">
         {% csrf_token %}
 
+       
         <div class="mb-3">
-          <label class="form-label">Core / Facility</label>
-          <input type="text" name="core" class="form-control" required>
-        </div>
+    <label class="form-label">Facility</label>
+    <input type="text" class="form-control" value="{{ facility_prefill }}" disabled>
+    <input type="hidden" name="facility_id" value="{{ facility_id }}">
+</div>
 
         <div class="mb-3">
           <label class="form-label">Category</label>
@@ -73,10 +75,12 @@
           <input type="date" name="date" class="form-control" required>
         </div>
 
+
         <button type="submit" class="btn btn-success w-100 mb-2">Save Activity</button>
 
-        <a href="{% url 'emission_index' %}" class="btn btn-outline-secondary w-100">
-          ← Back to Activities
+        <a href="{% url 'emissions:emission_index' facility_id %}">Back</a>
+
+        
         </a>
       </form>
 
